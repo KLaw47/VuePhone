@@ -5,7 +5,7 @@ import ContactList from './components/ContactList.vue'
 import sampleData from './sampleData'
 
 
-const contacts = ref(JSON.parse(localStorage.getItem('contacts')) || sampleData)
+const contacts = ref(sampleData || JSON.parse(localStorage.getItem('contacts')))
 const setContactsInLocalStorage = () => {
   localStorage.setItem('contacts', JSON.stringify(contacts.value))
 }
