@@ -5,8 +5,7 @@ import ContactList from './components/ContactList.vue'
 import sampleData from './sampleData'
 
 
-const contacts = ref(JSON.parse(localStorage.getItem('contacts')))
-
+const contacts = ref(JSON.parse(localStorage.getItem('contacts')) || sampleData)
 const setContactsInLocalStorage = () => {
   localStorage.setItem('contacts', JSON.stringify(contacts.value))
 }
@@ -16,16 +15,16 @@ const addContact = (contact) => {
   setContactsInLocalStorage()
 }
 
-const deleteContact = (contact) => {
-  contacts.value = contacts.value.filter((c) => c.id !== contact.id)
-  setContactsInLocalStorage()
-}
 // const deleteContact = (contact) => {
-//   const index = contacts.value.indexOf(contact)
-//   if (index !== -1) {
-//     contacts.value.splice(index, 1)
-//   }
+//   contacts.value = contacts.value.filter((c) => c.id !== contact.id)
+//   setContactsInLocalStorage()
 // }
+const deleteContact = (contact) => {
+  const index = contacts.value.indexOf(contact)
+  if (index !== -1) {
+    contacts.value.splice(index, 1)
+  }
+}
 </script>
 
 <template>
